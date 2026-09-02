@@ -1,24 +1,30 @@
-fn main(){
-	 let qty = [2, 1, 3, 3, 1];
-     let amount = [450000.00, 1500000.00, 750000.00, 2850000.00, 250000.00];
+fn main() {
+    let qty1 = 2;
+    let qty2 = 1;
+    let qty3 = 3;
+    let qty4 = 3;
+    let qty5 = 1;
 
-     let items = ["Tosiba", "Mac", "HP", "Dell","Acer"];
-     //sum of quantity
-     let sum_qty = qty[0] + qty[1] + qty[2] + qty[3] + qty[4];
+    let amount1 = 450000.00;
+    let amount2 = 1500000.00;
+    let amount3 = 750000.00;
+    let amount4 = 2850000.00;
+    let amount5 = 250000.00;
 
-     //average quantity
-     let average_qty = sum_qty as f64 / qty.len() as f64;
+    let sum_qty = qty1 + qty2 + qty3 + qty4 + qty5;
+    let average_qty = sum_qty / 5;
 
-     //sum of amount
-     let sum_amount = amount[0] + amount[1] + amount[2] + amount[3] + amount[4];     
+    let sum_amount = amount1 + amount2 + amount3 + amount4 + amount5;
+    let average_amount = sum_amount / 5.0;
 
-     //average amount
-     let average_amount = sum_amount / amount.len() as f64;
+    println!("Tosiba: {} {}", qty1, amount1);
+    println!("Mac: {} {}", qty2, amount2);
+    println!("HP: {} {}", qty3, amount3);
+    println!("Dell: {} {}", qty4, amount4);
+    println!("Acer: {} {}", qty5, amount5);
 
-     println!("Items: {:?}", items);
-     println!("Total Quantity: {}", sum_qty);
-     println!("Average Quantity: {}", average_qty);
-     println!("Total Amount: {}", sum_amount);
-     println!("Average amount: {}", average_amount);
-
+    println!("Total Quantity: {}", sum_qty);
+    println!("Average Quantity: {}", average_qty);
+    println!("Total Amount: {}", sum_amount);
+    println!("Average Amount: {}", average_amount);
 }
