@@ -1,5 +1,5 @@
 fn main() {
-    let fees = 25_000;
+    let mut fees = 25_000;
     println!("Fees is {}", fees);
 
     fees = 35_000;

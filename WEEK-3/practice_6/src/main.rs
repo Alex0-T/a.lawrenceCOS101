@@ -1,4 +1,4 @@
 fn main() {
-    let interest: f32 = 8; //integer assigned to a float
+    let interest: f32 = 8.0;
     println!("Interest is {}", interest);
 }
