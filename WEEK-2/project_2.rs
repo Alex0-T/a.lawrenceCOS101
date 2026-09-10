@@ -27,4 +27,6 @@ fn main() {
     println!("Average Quantity: {}", average_qty);
     println!("Total Amount: {}", sum_amount);
     println!("Average Amount: {}", average_amount);
+
 }
+
