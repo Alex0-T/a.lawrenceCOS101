@@ -45,6 +45,7 @@ fn main() {
     } else if experience == 1 {
         println!("No incentive specified for experienced employees aged 28 or 29.");
     } else {
-        println!("Invalid skill level.");
+        println!("Please select a valid option.");
     }
+    
 }
