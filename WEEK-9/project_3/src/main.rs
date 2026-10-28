@@ -1,4 +1,5 @@
 use std::fs::File;
+use std::fs::read_to_string;
 use std::io::Write;
 
 fn main() {
@@ -26,66 +27,86 @@ fn main() {
         "South East",
     ];
 
-    // Create the commissioners CSV file
-    let mut file_1 = File::create("commissioners.csv")
+    // Creating the commissioners CSV file
+    let mut file1 = File::create("commissioners.csv")
         .expect("Failed to create commissioners file");
 
-    file_1.write_all("Commissioner\n".as_bytes())
+    file1.write_all(b"Commissioner\n")
         .expect("Failed to write to commissioners file");
 
     for i in 0..5 {
         let record = format!("{}\n", commissioners[i]);
 
-        file_1.write_all(record.as_bytes())
+        file1.write_all(record.as_bytes())
             .expect("Failed to write to commissioners file");
     }
 
-    // Create the ministries CSV file
-    let mut file_2 = File::create("ministries.csv")
+    // Creating the ministries CSV file
+    let mut file2 = File::create("ministries.csv")
         .expect("Failed to create ministries file");
 
-    file_2.write_all("Ministry\n".as_bytes())
+    file2.write_all(b"Ministry\n")
         .expect("Failed to write to ministries file");
 
     for i in 0..5 {
         let record = format!("{}\n", ministries[i]);
 
-        file_2.write_all(record.as_bytes())
+        file2.write_all(record.as_bytes())
             .expect("Failed to write to ministries file");
     }
 
-    // Create the zones CSV file
-    let mut file_3 = File::create("zones.csv")
+    // Creating the zones CSV file
+    let mut file3 = File::create("zones.csv")
         .expect("Failed to create zones file");
 
-    file_3.write_all("Zone\n".as_bytes())
+    file3.write_all(b"Zone\n")
         .expect("Failed to write to zones file");
 
     for i in 0..5 {
         let record = format!("{}\n", zones[i]);
 
-        file_3.write_all(record.as_bytes())
+        file3.write_all(record.as_bytes())
             .expect("Failed to write to zones file");
     }
 
-    // Merge the three datasets into one CSV file
-    let mut file_4 = File::create("EFCC_merge.csv")
+    // Reading the CSV files
+    let commissioners_data = read_to_string("commissioners.csv")
+        .expect("Failed to read commissioners file");
+
+    let ministries_data = read_to_string("ministries.csv")
+        .expect("Failed to read ministries file");
+
+    let zones_data = read_to_string("zones.csv")
+        .expect("Failed to read zones file");
+
+    // Convert the file contents into lines
+    let commissioners_lines: Vec<&str> =
+        commissioners_data.lines().collect();
+
+    let ministries_lines: Vec<&str> =
+        ministries_data.lines().collect();
+
+    let zones_lines: Vec<&str> =
+        zones_data.lines().collect();
+
+    // Creating the merged CSV file
+    let mut file4 = File::create("EFCC_merge.csv")
         .expect("Failed to create merged file");
 
-    file_4.write_all("Commissioner,Ministry,Zone\n".as_bytes())
+    file4.write_all(b"Commissioner,Ministry,Zone\n")
         .expect("Failed to write to merged file");
 
-    for i in 0..5 {
+    for i in 1..commissioners_lines.len() {
         let record = format!(
             "{},{},{}\n",
-            commissioners[i],
-            ministries[i],
-            zones[i]
+            commissioners_lines[i],
+            ministries_lines[i],
+            zones_lines[i]
         );
 
-        file_4.write_all(record.as_bytes())
+        file4.write_all(record.as_bytes())
             .expect("Failed to write to merged file");
     }
 
-    println!("Three CSV files created and merged successfully!");
+    println!("Three CSV files created, read and merged successfully!");
 }
